@@ -1,6 +1,10 @@
 {
 	"folders": [
 		{
+			"path": "amazen_client",
+			"name": "Client"
+		},
+		{
 			"path": "amazen_server",
 			"name": "Server"
 		}
