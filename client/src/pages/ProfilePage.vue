@@ -1,5 +1,5 @@
 <template>
-  <div class="about text-center">
+  <div class="profile-page text-center">
     <h1>Welcome {{ profile.name }}</h1>
     <img class="rounded" :src="profile.picture" alt="" />
     <p>{{ profile.email }}</p>
@@ -10,7 +10,7 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 export default {
-  name: 'Profile',
+  name: 'product-page',
   setup() {
     return {
       profile: computed(() => AppState.profile)
