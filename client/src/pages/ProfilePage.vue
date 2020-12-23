@@ -10,7 +10,7 @@
 import { computed } from 'vue'
 import { AppState } from '../AppState'
 export default {
-  name: 'product-page',
+  name: 'ProductPage',
   setup() {
     return {
       profile: computed(() => AppState.profile)

@@ -1,18 +1,20 @@
 <template>
-  <nav class="navbar navbar-expand-lg">
-    <div class="row bg-primary">
-      <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-        <div class="d-flex flex-column align-items-center">
+  <div>
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+      <router-link class="navbar-brand" :to="{ name: 'HomePage' }">
+        <div class="align-items-center">
           <!-- <img
             alt="logo"
             src="../assets/img/cw-logo.png"
             height="45"
           /> -->
-          <span>AmaZen</span>
+          <h1 class="text-light">
+            AmaZen
+          </h1>
         </div>
       </router-link>
       <button
-        class="navbar-toggler"
+        class="navbar-toggler text-light"
         type="button"
         data-toggle="collapse"
         data-target="#navbarText"
@@ -20,12 +22,12 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon" />
+        <span class="navbar-toggler-icon navbar-light" />
       </button>
-      <div class="collapse navbar-collapse" id="navbarText">
+      <div class="ml-auto" id="navbarText">
         <span class="navbar-text">
           <button
-            class="btn btn-outline-dark text-uppercase"
+            class="btn btn-outline-light text-uppercase text-light bg-primary"
             @click="login"
             v-if="!user.isAuthenticated"
           >
@@ -50,7 +52,7 @@
               :class="{ show: state.dropOpen }"
               @click="state.dropOpen = false"
             >
-              <router-link :to="{ name: 'Profile' }">
+              <router-link :to="{ name: 'ProfilePage' }">
                 <div class="list-group-item list-group-item-action hoverable">
                   Profile
                 </div>
@@ -65,22 +67,31 @@
           </div>
         </span>
       </div>
-    </div>
-    <div class="row bg-secondary">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link :to="{ name: 'home-page' }" class="nav-link">
+    </nav>
+    <nav class="navbar navbar-secondary bg-secondary">
+      <ul class="navbar-nav d-flex flex-row ml-3">
+        <li class="nav-item px-3">
+          <router-link :to="{ name: 'HomePage' }" class="nav-link text-light">
             Home
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link :to="{ name: 'profile-page' }" class="nav-link">
+        <li class="nav-item px-3"
+            v-if="user.isAuthenticated"
+        >
+          <router-link :to="{ name: 'ProfilePage' }" class="nav-link text-light">
             Profile
           </router-link>
         </li>
       </ul>
-    </div>
-  </nav>
+      <button
+        class="btn btn-outline-light text-uppercase text-light bg-primary"
+        @click="login"
+        v-if="user.isAuthenticated"
+      >
+        Post Product
+      </button>
+    </nav>
+  </div>
 </template>
 
 <script>

@@ -9,5 +9,14 @@
 			"name": "Server"
 		}
 	],
-	"settings": {}
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"octref.vetur"
+		]
+	},
+	"recommendations": [
+		"octref.vetur",
+		"dbaeumer.vscode-eslint"
+	]
 }

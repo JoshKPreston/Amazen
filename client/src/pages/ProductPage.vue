@@ -4,17 +4,15 @@
   </div>
 </template>
 
-
 <script>
 export default {
-  name: 'product-page',
-  setup(){
+  name: 'ProductPage',
+  setup() {
     return {}
   },
-  components:{}
+  components: {}
 }
 </script>
-
 
 <style lang="scss" scoped>
 

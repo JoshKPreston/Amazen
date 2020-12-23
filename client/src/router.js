@@ -8,24 +8,24 @@ function loadPage(page) {
 const routes = [
   {
     path: '/',
-    name: 'home-page',
-    component: loadPage('home-page')
+    name: 'HomePage',
+    component: loadPage('HomePage')
   },
   {
     path: '/product/:id',
-    name: 'product-page',
-    component: loadPage('product-page')
+    name: 'ProductPage',
+    component: loadPage('ProductPage')
   },
   {
     path: '/profile',
-    name: 'profile-page',
-    component: loadPage('profile-page'),
+    name: 'ProfilePage',
+    component: loadPage('ProfilePage'),
     beforeEnter: authGuard
   },
   {
     path: '/wishlist',
-    name: 'wishlist-page',
-    component: loadPage('wishlist-page'),
+    name: 'WishlistPage',
+    component: loadPage('WishlistPage'),
     beforeEnter: authGuard
   }
 ]
