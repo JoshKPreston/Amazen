@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using amazen_server.Repositories;
+using amazen_server.Services;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -63,6 +65,10 @@ namespace amazen_server
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "amazen_server", Version = "v1" });
             });
 
+            services.AddScoped<IDbConnection>(dbConnection => CreateDbConnection());
+            services.AddTransient<ProfileService>();
+            services.AddTransient<ProfileRepository>();
+
             // REVIEW Do you want to do something here?
 
         }
@@ -70,7 +76,7 @@ namespace amazen_server
 
         private IDbConnection CreateDbConnection()
         {
-            string connectionString = Configuration.GetSection("DB").GetValue<string>("gearhost");
+            string connectionString = Configuration.GetSection("DB").GetValue<string>("GearHost");
             return new MySqlConnection(connectionString);
         }
 

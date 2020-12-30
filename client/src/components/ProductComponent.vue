@@ -1,21 +1,17 @@
 <template>
   <div class="product-component">
-
-
   </div>
 </template>
 
-
 <script>
 export default {
-  name: 'product-component',
-  setup(){
+  name: 'ProductComponent',
+  setup() {
     return {}
   },
-  components:{}
+  components: {}
 }
 </script>
-
 
 <style lang="scss" scoped>
 
