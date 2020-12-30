@@ -27,9 +27,9 @@ namespace amazen_server.Controllers
                 Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
                 return Ok(_profileService.GetOrCreateProfile(userInfo));
             }
-            catch (System.Exception Error)
+            catch (System.Exception e)
             {
-                return BadRequest(Error.Message);
+                return BadRequest(e.Message);
             }
         }
     }

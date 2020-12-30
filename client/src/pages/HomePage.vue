@@ -1,14 +1,26 @@
 <template>
-  <div class="home-page">
-    <h1>this is the home page</h1>
+  <div class="home-page page">
+    <div class="container bg-info">
+      <div class="row p-3">
+        <product-component v-for="p in products" :key="p" :product="p" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { computed, onMounted } from 'vue'
+import { productService } from '../services/ProductService'
+import { AppState } from '../AppState'
 export default {
   name: 'HomePage',
   setup() {
-    return {}
+    onMounted(async() => {
+      productService.getAll()
+    })
+    return {
+      products: computed(() => AppState.products)
+    }
   },
   components: {}
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="page profile-page">
+  <div class="profile-page page">
     <div class="container bg-light">
       <div class="row p-3">
         <h1>My Wish Lists</h1>
@@ -27,8 +27,11 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row p-3">
         <h1>My Products</h1>
+      </div>
+      <div class="row p-3">
+        <product-component v-for="p in products" :key="p" :product-prop="p" />
       </div>
     </div>
   </div>
@@ -38,7 +41,9 @@
 import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
+import ProductComponent from '../components/ProductComponent.vue'
 export default {
+  components: { ProductComponent },
   name: 'ProfilePage',
   setup() {
     onMounted(async() => {
@@ -47,8 +52,9 @@ export default {
       }
     })
     return {
-      profile: computed(() => AppState.profile)
-
+      profile: computed(() => AppState.profile),
+      wishlists: computed(() => AppState.wishlists),
+      products: computed(() => AppState.products)
     }
   }
 }
