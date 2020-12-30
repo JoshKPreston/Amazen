@@ -107,7 +107,7 @@
                 <div class="form-group">
                   <input required
                          class="form-control"
-                         :value="state.newProduct.title"
+                         v-model="state.newProduct.title"
                          type="text"
                          name="Title"
                          placeholder="Title"
@@ -116,17 +116,18 @@
                 <div class="form-group">
                   <input required
                          class="form-control"
-                         :value="state.newProduct.category"
-                         type="text"
-                         name="Category"
-                         placeholder="Category"
+                         v-model="state.newProduct.price"
+                         type="number"
+                         min="1"
+                         step="0.01"
+                         name="Price"
+                         placeholder="Price"
                   />
                 </div>
                 <div class="form-group">
                   <textarea required
                             class="form-control"
-                            :value="state.newProduct.description"
-                            type="text"
+                            v-model="state.newProduct.description"
                             name="Description"
                             placeholder="Description"
                   ></textarea>
@@ -134,21 +135,19 @@
                 <div class="form-group">
                   <input required
                          class="form-control"
-                         :value="state.newProduct.image"
+                         v-model="state.newProduct.category"
                          type="text"
-                         name="ImageUrl"
-                         placeholder="ImageUrl"
+                         name="Category"
+                         placeholder="Category"
                   />
                 </div>
                 <div class="form-group">
                   <input required
                          class="form-control"
-                         :value="state.newProduct.price"
-                         type="number"
-                         min="1"
-                         step="0.01"
-                         name="Price"
-                         placeholder="Price"
+                         v-model="state.newProduct.image"
+                         type="text"
+                         name="ImageUrl"
+                         placeholder="ImageUrl"
                   />
                 </div>
                 <button type="submit" class="btn btn-primary form-control">
@@ -173,7 +172,13 @@ export default {
   setup() {
     const state = reactive({
       dropOpen: false,
-      newProduct: {}
+      newProduct: {
+        title: '',
+        price: null,
+        description: '',
+        category: '',
+        image: ''
+      }
     })
     return {
       state,
@@ -188,6 +193,7 @@ export default {
         await productService.create(state.newProduct)
         state.newProduct = {}
         document.getElementById('newProductForm').classList.remove('show')
+        document.getElementById('newProductForm').classList.add('hide')
       }
     }
   }

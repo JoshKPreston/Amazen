@@ -2,7 +2,7 @@
   <div class="profile-page page">
     <div class="container bg-light">
       <div class="row p-3">
-        <h1>My Wish Lists</h1>
+        <h2>My Wish Lists</h2>
       </div>
       <div class="row p-3">
         <div class="col-4 justify-content-center">
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="row p-3">
-        <h1>My Products</h1>
+        <h2>My Products</h2>
       </div>
       <div class="row p-3">
         <product-component v-for="p in products" :key="p" :product-prop="p" />
@@ -42,6 +42,7 @@ import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
 import ProductComponent from '../components/ProductComponent.vue'
+import { productService } from '../services/ProductService'
 export default {
   components: { ProductComponent },
   name: 'ProfilePage',
@@ -50,6 +51,7 @@ export default {
       if (!AppState.profile.id) {
         await profileService.getProfile()
       }
+      await productService.getAll()
     })
     return {
       profile: computed(() => AppState.profile),

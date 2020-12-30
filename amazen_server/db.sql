@@ -9,7 +9,7 @@ create table profiles(
 create table products(
   id int not null auto_increment primary key,
   image varchar(255) not null,
-  category varchar(255) not null unique,
+  category varchar(255) not null,
   title varchar(255) not null,
   description varchar(1020) not null,
   price decimal(8,2) not null,

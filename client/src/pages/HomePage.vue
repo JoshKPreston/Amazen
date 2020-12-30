@@ -2,7 +2,7 @@
   <div class="home-page page">
     <div class="container bg-info">
       <div class="row p-3">
-        <product-component v-for="p in products" :key="p" :product="p" />
+        <product-component v-for="p in products" :key="p" :product-prop="p" />
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@ export default {
   name: 'HomePage',
   setup() {
     onMounted(async() => {
-      productService.getAll()
+      await productService.getAll()
     })
     return {
       products: computed(() => AppState.products)
