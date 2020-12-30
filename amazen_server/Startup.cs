@@ -68,6 +68,8 @@ namespace amazen_server
             services.AddScoped<IDbConnection>(dbConnection => CreateDbConnection());
             services.AddTransient<ProfileService>();
             services.AddTransient<ProfileRepository>();
+            services.AddTransient<ProductService>();
+            services.AddTransient<ProductRepository>();
 
             // REVIEW Do you want to do something here?
 

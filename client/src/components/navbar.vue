@@ -85,11 +85,80 @@
       </ul>
       <button
         class="btn btn-outline-light text-uppercase text-light bg-primary"
-        @click="login"
         v-if="user.isAuthenticated"
+        data-toggle="modal"
+        data-target="#newProductForm"
       >
         Post Product
       </button>
+      <div id="newProductForm" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between">
+              <h4 class="modal-title">
+                Post a product
+              </h4>
+              <button class="close btn btn-danger" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <form @submit.prevent="postProduct" class="">
+                <div class="form-group">
+                  <input required
+                         class="form-control"
+                         :value="state.newProduct.title"
+                         type="text"
+                         name="Title"
+                         placeholder="Title"
+                  />
+                </div>
+                <div class="form-group">
+                  <input required
+                         class="form-control"
+                         :value="state.newProduct.category"
+                         type="text"
+                         name="Category"
+                         placeholder="Category"
+                  />
+                </div>
+                <div class="form-group">
+                  <textarea required
+                            class="form-control"
+                            :value="state.newProduct.description"
+                            type="text"
+                            name="Description"
+                            placeholder="Description"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <input required
+                         class="form-control"
+                         :value="state.newProduct.image"
+                         type="text"
+                         name="ImageUrl"
+                         placeholder="ImageUrl"
+                  />
+                </div>
+                <div class="form-group">
+                  <input required
+                         class="form-control"
+                         :value="state.newProduct.price"
+                         type="number"
+                         min="1"
+                         step="0.01"
+                         name="Price"
+                         placeholder="Price"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary form-control">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
   </div>
 </template>
@@ -98,11 +167,13 @@
 import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { computed, reactive } from 'vue'
+import { productService } from '../services/ProductService'
 export default {
   name: 'Navbar',
   setup() {
     const state = reactive({
-      dropOpen: false
+      dropOpen: false,
+      newProduct: {}
     })
     return {
       state,
@@ -112,6 +183,11 @@ export default {
       },
       async logout() {
         await AuthService.logout({ returnTo: window.location.origin })
+      },
+      async postProduct() {
+        await productService.create(state.newProduct)
+        state.newProduct = {}
+        document.getElementById('newProductForm').classList.remove('show')
       }
     }
   }
@@ -139,5 +215,8 @@ a:hover {
 }
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
+}
+textarea {
+  resize: none;
 }
 </style>

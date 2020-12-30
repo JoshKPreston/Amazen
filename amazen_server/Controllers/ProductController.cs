@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using amazen_server.Models;
 using amazen_server.Services;
 using CodeWorks.Auth0Provider;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace amazen_server.Controllers
@@ -32,11 +33,11 @@ namespace amazen_server.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Product> GetOne()
+        public ActionResult<Product> GetOne(int id)
         {
             try
             {
-                return Ok(_productService.GetOne());
+                return Ok(_productService.GetOne(id));
             }
             catch (System.Exception e)
             {
@@ -45,6 +46,7 @@ namespace amazen_server.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Product>> Create([FromBody] Product newProduct)
         {
             try
@@ -52,7 +54,6 @@ namespace amazen_server.Controllers
                 Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
                 newProduct.CreatorId = userInfo.Id;
                 Product created = _productService.Create(newProduct);
-                created.CreatorId = userInfo;
                 return Ok(created);
             }
             catch (System.Exception e)

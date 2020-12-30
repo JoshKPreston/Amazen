@@ -1,10 +1,10 @@
 <template>
   <div class="product-component col-3 card">
     <div class="card text-left">
-      <img class="card-img-top" src="holder.js/100px180/" alt="">
+      <img class="card-img-top" :src="product.image" alt="">
       <div class="card-body">
         <h4 class="card-title">
-          Title
+          {{ product.title }}
         </h4>
         <p class="card-text">
           Body
