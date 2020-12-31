@@ -45,5 +45,10 @@ namespace amazen_server.Services
         _productRepository.Edit(data);
         return _productRepository.GetOne(data.Id);
       }
+
+      internal Product Delete(int id)
+      {
+        return _productRepository.Delete(id);
+      }
   }
 }

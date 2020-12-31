@@ -9,22 +9,24 @@ using Microsoft.AspNetCore.Mvc;
 namespace amazen_server.Controllers
 {
     [ApiController]
-    [Route("api/products")]
-    public class ProductController : ControllerBase
+    [Route("api/wishlists")]
+    public class WishlistController : ControllerBase
     {
-        private readonly ProductService _productService;
+        private readonly WishlistService _wishlistService;
 
-        public ProductController(ProductService productService)
+        public WishlistController(WishlistService wishlistService)
         {
-            _productService = productService;
+            _wishlistService = wishlistService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> Get()
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<Wishlist>>> Get()
         {
             try
             {
-                return Ok(_productService.Get());
+                Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+                return Ok(_wishlistService.Get(userInfo));
             }
             catch (System.Exception e)
             {
@@ -33,11 +35,12 @@ namespace amazen_server.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Product> GetOne(int id)
+        [Authorize]
+        public ActionResult<Wishlist> GetOne(int id)
         {
             try
             {
-                return Ok(_productService.GetOne(id));
+                return Ok(_wishlistService.GetOne(id));
             }
             catch (System.Exception e)
             {
@@ -47,20 +50,35 @@ namespace amazen_server.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Product>> Create([FromBody] Product newProduct)
+        public async Task<ActionResult<Wishlist>> Create([FromBody] Wishlist newWishlist)
         {
             try
             {
                 Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-                newProduct.CreatorId = userInfo.Id;
-                Product created = _productService.Create(newProduct);
+                newWishlist.CreatorId = userInfo.Id;
+                Wishlist created = _wishlistService.Create(newWishlist);
                 return Ok(created);
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
-                return BadRequest(e.Message);
+                
+                throw;
             }
         }
+
+        // [HttpPut]
+        // [Authorize]
+        // public ActionResult<Product> Put(int id)
+        // {
+        //     try
+        //     {
+                
+        //     }
+        //     catch (System.Exception e)
+        //     {
+        //         return BadRequest(e.Message);
+        //     }
+        // }
 
         [HttpDelete]
         [Authorize]

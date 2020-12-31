@@ -70,6 +70,8 @@ namespace amazen_server
             services.AddTransient<ProfileRepository>();
             services.AddTransient<ProductService>();
             services.AddTransient<ProductRepository>();
+            services.AddTransient<WishlistService>();
+            services.AddTransient<WishlistRepository>();
 
             // REVIEW Do you want to do something here?
 

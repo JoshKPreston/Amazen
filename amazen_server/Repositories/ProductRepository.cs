@@ -20,6 +20,7 @@ namespace amazen_server.Repositories
             string sql = "select * from products";
             return _db.Query<Product>(sql);
         }
+        
         public Product GetOne(int id)
         {
             string sql = "select * from products where id = @Id";
