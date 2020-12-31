@@ -22,4 +22,4 @@ class WishlistService {
   }
 }
 
-export const productService = new WishlistService()
+export const wishlistService = new WishlistService()
