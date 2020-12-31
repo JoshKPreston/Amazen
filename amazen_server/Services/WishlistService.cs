@@ -30,19 +30,24 @@ namespace amazen_server.Services
       return newWishlist;
     }
 
-    internal Wishlist Edit(Wishlist data, string userId)
-    {
-      Wishlist original = _wishlistRepository.GetOne(data.Id);
-      if (original == null)
-      {
-        throw new Exception("Cannot find wishlist with that <Id>");
-      }
-      if (original.CreatorId != userId)
-      {
-        throw new Exception("Invalid product creator");
-      }
-      _wishlistRepository.Edit(data);
-      return _wishlistRepository.GetOne(data.Id);
-    }
+    // internal Wishlist Edit(Wishlist data, string userId)
+    // {
+    //   Wishlist original = _wishlistRepository.GetOne(data.Id);
+    //   if (original == null)
+    //   {
+    //     throw new Exception("Cannot find wishlist with that <Id>");
+    //   }
+    //   if (original.CreatorId != userId)
+    //   {
+    //     throw new Exception("Invalid product creator");
+    //   }
+    //   _wishlistRepository.Edit(data);
+    //   return _wishlistRepository.GetOne(data.Id);
+    // }
+
+    // internal Wishlist Delete(int id, Profile userInfo)
+    // {
+    //     return _wishlistRepository.Delete(id, userInfo);
+    // }
   }
 }

@@ -6,7 +6,7 @@ class WishlistService {
   async getAll() {
     try {
       const res = await api.get('api/wishlists')
-      AppState.products = res.data
+      AppState.wishlists = res.data
     } catch (error) {
       logger.log(error)
     }
@@ -15,7 +15,7 @@ class WishlistService {
   async getOne(id) {
     try {
       const res = await api.get('api/wishlists/' + id)
-      AppState.activeProduct = res.data
+      AppState.activeWishlist = res.data
     } catch (error) {
       logger.log(error)
     }

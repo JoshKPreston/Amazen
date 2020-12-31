@@ -80,18 +80,20 @@ namespace amazen_server.Controllers
         //     }
         // }
 
-        [HttpDelete]
-        [Authorize]
-        public async Task<ActionResult<Product>> Delete(int id)
-        {
-            try
-            {
-                return Ok(_productService.Delete(id));
-            }
-            catch (System.Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+        // [HttpDelete]
+        // [Authorize]
+        // public async Task<ActionResult<Wishlist>> Delete(int id)
+        // {
+        //     try
+        //     {
+        //         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        //         Wishlist deleted = _wishlistService.Delete(id, userInfo);
+        //         return Ok(deleted);
+        //     }
+        //     catch (System.Exception e)
+        //     {
+        //         return BadRequest(e.Message);
+        //     }
+        // }
     }
 }

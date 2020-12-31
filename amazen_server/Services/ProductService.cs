@@ -31,24 +31,25 @@ namespace amazen_server.Services
         return newProduct;
       }
 
-      internal Product Edit(Product data, string userId)
-      {
-        Product original = _productRepository.GetOne(data.Id);
-        if (original == null)
-        {
-          throw new Exception("Cannot find product with that <Id>");
-        }
-        if (original.CreatorId != userId)
-        {
-          throw new Exception("Invalid product creator");
-        }
-        _productRepository.Edit(data);
-        return _productRepository.GetOne(data.Id);
-      }
+      // internal Product Edit(Product data, string userId)
+      // {
+      //   Product original = _productRepository.GetOne(data.Id);
+      //   if (original == null)
+      //   {
+      //     throw new Exception("Cannot find product with that <Id>");
+      //   }
+      //   if (original.CreatorId != userId)
+      //   {
+      //     throw new Exception("Invalid product creator");
+      //   }
+      //   _productRepository.Edit(data);
+      //   return _productRepository.GetOne(data.Id);
+      // }
 
-      internal Product Delete(int id)
-      {
-        return _productRepository.Delete(id);
-      }
+      // internal Product Delete(int id, Profile userInfo)
+      // {
+      //   _productRepository.Delete(id, userInfo);
+      // }
+
   }
 }

@@ -5,27 +5,7 @@
         <h2>My Wish Lists</h2>
       </div>
       <div class="row p-3">
-        <div class="col-4 justify-content-center">
-          <div class="wishlist border border-primary d-flex justify-content-center align-items-center p-4 shadow">
-            <h2>
-              Christmas
-            </h2>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="wishlist border border-primary d-flex justify-content-center align-items-center p-4 shadow">
-            <h2>
-              Kitchen
-            </h2>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="wishlist border border-primary d-flex justify-content-center align-items-center p-4 shadow">
-            <h2>
-              kid's toys
-            </h2>
-          </div>
-        </div>
+        <wishlist-component v-for="w in wishlists" :key="w" :wishlist-prop="w" />
       </div>
       <div class="row p-3">
         <h2>My Products</h2>
@@ -43,6 +23,7 @@ import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
 import ProductComponent from '../components/ProductComponent.vue'
 import { productService } from '../services/ProductService'
+import { wishlistService } from '../services/WishlistService'
 export default {
   components: { ProductComponent },
   name: 'ProfilePage',
@@ -52,6 +33,7 @@ export default {
         await profileService.getProfile()
       }
       await productService.getAll()
+      await wishlistService.getAll()
     })
     return {
       profile: computed(() => AppState.profile),

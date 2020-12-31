@@ -48,10 +48,10 @@ namespace amazen_server.Repositories
       _db.Execute(sql, data);
     }
 
-    internal void Delete(int id)
+    internal void Delete(int id, Profile userInfo)
     {
-      string sql = "delete from wishlists where id = @id";
-      _db.Execute(sql, new { id });
+      string sql = "delete from wishlists where id = @id and creatorId = @creatorId";
+      _db.Execute(sql, new { id, creatorId = userInfo.Id });
     }
   }
 }

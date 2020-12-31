@@ -62,18 +62,28 @@ namespace amazen_server.Controllers
             }
         }
 
-        [HttpDelete]
-        [Authorize]
-        public async Task<ActionResult<Product>> Delete(int id)
-        {
-            try
-            {
-                return Ok(_productService.Delete(id));
-            }
-            catch (System.Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+        // [HttpPut]
+        // [Authorize]
+        // public async Task<ActionResult<Product>> Edit([FromBody] Product data)
+        // {
+        //     Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        //     return Ok(_productService.Edit(data, userInfo));
+        // }
+
+        // [HttpDelete]
+        // [Authorize]
+        // public async Task<ActionResult<Product>> Delete(int id)
+        // {
+        //     try
+        //     {
+        //         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        //         Product deleted = _productService.Delete(id, userInfo);
+        //         return Ok(deleted);
+        //     }
+        //     catch (System.Exception e)
+        //     {
+        //         return BadRequest(e.Message);
+        //     }
+        // }
     }
 }
